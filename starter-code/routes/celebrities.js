@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
   });
 
   router.get('/new', (req, res, next) => {
-    res.render('new');
+    res.render('/celebrities/new');
   });
 
   router.post('/new', (req, res, next) => {
