@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Movie = require('../models/Movie');
+const Celeb  = require('../models/Celebrity');
 
 router.get('/', (req, res, next) => {
     Movie.find()
@@ -13,8 +14,20 @@ router.get('/', (req, res, next) => {
         })
 });
 
+
 router.get('/new', (req, res, next) => {
-    res.render('movies/new');
+    if(!req.user){
+        req.flash('error', 'Matiny Error')
+        res.redirect('/user/login')
+    }
+
+    Celeb.find()
+    .then((celebList)=>{
+        res.render('movies/new', {actors: celebList});
+    })
+    .catch((err)=>{
+        next(err);
+    })
 });
 
 router.post('/new', (req, res, next) => {

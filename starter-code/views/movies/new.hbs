@@ -7,5 +7,14 @@
     <br>
     <input name="plot" type="text" placeholder="Plot">
     <br>
+    <select name="starring">
+
+        {{#each actors}}
+
+        <option value="{{this._id}}">{{this.name}}</option>
+
+        {{/each}}
+
+    </select>
     <button>Create New Movie!</button>
 </form>
